@@ -2,7 +2,17 @@
 import { LeadTable } from '@/components/leads/lead-table'
 import { LeadFilters } from '@/components/leads/lead-filters'
 
-const mockLeads = [
+type Lead = {
+  id: string;
+  name: string;
+  company: string;
+  title: string;
+  location: string;
+  owner: string;
+  lastContacted: string;
+};
+
+const mockLeads: Lead[] = [
   {
     id: '1',
     name: 'Megan Hill',
@@ -12,7 +22,7 @@ const mockLeads = [
     owner: 'Michael Scott',
     lastContacted: '2 days ago',
   },
-  // Add more mock leads as shown in your image
+  // Add more mock leads as needed
 ]
 
 export default function LeadsPage() {

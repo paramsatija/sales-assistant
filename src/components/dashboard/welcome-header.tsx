@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 export function WelcomeHeader({ name }: { name: string }) {
     return (
       <div className="mb-8">
