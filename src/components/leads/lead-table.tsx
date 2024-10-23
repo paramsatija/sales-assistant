@@ -29,32 +29,32 @@ export function LeadTable({ leads, onLeadSelect }: LeadTableProps) {
   }
 
   return (
-    <div className="bg-white rounded-lg border overflow-hidden">
+    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr className="bg-gray-50">
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider">
               Name
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider">
               Company
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider">
               Title
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider">
               Location
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider">
               Owner
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider">
               Last Contacted
             </th>
             <th className="w-20"></th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200">
+        <tbody className="divide-y divide-gray-200 bg-white">
           {leads.map((lead) => (
             <tr 
               key={lead.id}

@@ -53,7 +53,7 @@ export default function LeadsPage() {
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">Leads</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Leads</h1>
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
             <Plus size={20} />
             New lead
@@ -68,7 +68,7 @@ export default function LeadsPage() {
             placeholder="Search leads"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
           />
         </div>
 
