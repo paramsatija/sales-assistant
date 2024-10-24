@@ -23,7 +23,6 @@ const mockTasks = [
     description: 'Follow up with new lead',
     type: 'email' as const,
   },
-  // Add more mock tasks as needed
 ]
 
 export default function DashboardPage() {
@@ -50,7 +49,6 @@ export default function DashboardPage() {
     <div className="max-w-7xl mx-auto px-4 py-8">
       <WelcomeHeader name="Emma" />
       
-      {/* Metrics Overview */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <MetricCard title="Total Leads" value="1,234" change="+12.3%" trend="up" />
         <MetricCard title="Conversion Rate" value="23.5%" change="+2.1%" trend="up" />
@@ -58,7 +56,6 @@ export default function DashboardPage() {
         <MetricCard title="Active Deals" value="28" change="+4" trend="up" />
       </div>
 
-      {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <PerformanceChart />
         <RecentLeads />
