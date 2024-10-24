@@ -1,7 +1,13 @@
 'use client'
 
-import { WelcomeHeader } from '@/components/dashboard/welcome-header'
+import { useEffect, useState } from 'react'
+import { onAuthStateChanged } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import { auth } from '@/lib/firebase'
 import { MetricCard } from '@/components/dashboard/metric-card'
+import { RecentLeads } from '@/components/dashboard/recent-leads'
+import { PerformanceChart } from '@/components/dashboard/performance-chart'
+import { WelcomeHeader } from '@/components/dashboard/welcome-header'
 import { TaskList } from '@/components/dashboard/task-list'
 
 const mockTasks = [
@@ -14,47 +20,53 @@ const mockTasks = [
   {
     id: '2',
     title: 'Follow up with Alex',
-    description: 'Send proposal documents',
+    description: 'Follow up with new lead',
     type: 'email' as const,
   },
-  {
-    id: '3',
-    title: 'Team Meeting',
-    description: 'Weekly sales sync',
-    type: 'meeting' as const,
-  },
+  // Add more mock tasks as needed
 ]
 
 export default function DashboardPage() {
+  const [loading, setLoading] = useState(true)
+  const router = useRouter()
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.push('/auth/signin')
+      } else {
+        setLoading(false)
+      }
+    })
+
+    return () => unsubscribe()
+  }, [router])
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-6 text-gray-800">Welcome to Sales Assistant</h1>
-      <p className="text-xl mb-8 text-gray-600">Your AI-powered sales companion</p>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <WelcomeHeader name="Emma" />
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Recent Leads</h2>
-          <p className="text-gray-600">View and manage your latest sales leads here.</p>
-          {/* Add a list or table of recent leads here */}
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Performance Overview</h2>
-          <p className="text-gray-600">Quick snapshot of your sales performance.</p>
-          {/* Add a chart or key metrics here */}
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Upcoming Tasks</h2>
-          <p className="text-gray-600">Your priority tasks and follow-ups.</p>
-          {/* Add a list of upcoming tasks here */}
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-700">AI Insights</h2>
-          <p className="text-gray-600">AI-generated insights to boost your sales.</p>
-          {/* Add AI-generated insights or recommendations here */}
-        </div>
+      {/* Metrics Overview */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <MetricCard title="Total Leads" value="1,234" change="+12.3%" trend="up" />
+        <MetricCard title="Conversion Rate" value="23.5%" change="+2.1%" trend="up" />
+        <MetricCard title="Revenue" value="$45.2K" change="-3.2%" trend="down" />
+        <MetricCard title="Active Deals" value="28" change="+4" trend="up" />
+      </div>
+
+      {/* Main Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <PerformanceChart />
+        <RecentLeads />
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold mb-4">Upcoming tasks</h2>
+        <TaskList tasks={mockTasks} />
       </div>
     </div>
   )
