@@ -37,7 +37,6 @@ export function TopNavbar() {
                       ? 'text-blue-600'
                       : 'text-gray-700 hover:text-gray-900'
                   }`}
-                  aria-current={pathname === item.href ? 'page' : undefined}
                 >
                   {item.label}
                 </Link>
@@ -48,18 +47,17 @@ export function TopNavbar() {
           {/* Right Side Items */}
           <div className="flex items-center gap-4">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} aria-hidden="true" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <input
                 type="text"
                 placeholder="Search"
                 className="pl-10 pr-4 py-2 bg-gray-100 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
-                aria-label="Search"
               />
             </div>
-            <button className="p-2 hover:bg-gray-100 rounded-full" aria-label="Help">
+            <button className="p-2 hover:bg-gray-100 rounded-full">
               <HelpCircle size={20} className="text-gray-700" />
             </button>
-            <button className="p-2 hover:bg-gray-100 rounded-full" aria-label="Notifications">
+            <button className="p-2 hover:bg-gray-100 rounded-full">
               <Bell size={20} className="text-gray-700" />
             </button>
             <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
